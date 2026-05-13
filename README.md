@@ -3,7 +3,8 @@
  ###  Creadores
 
 - Carolina Flórez Salazar 
-- Samuel Parra Marín 
+- Samuel Parra Marín
+   
 ---
 >La entrevista y la tabla de excel se encuentran en la carpeta llamada "Entrega 1"
 ---
@@ -12,6 +13,11 @@
 - **Especialización :** Administracion y Contabilidad 
 - **Fecha de la entrevista:** 07/02/2026
 ---
+ ### Interfáz desarrollada por:
+ 
+- Juan David Idarraga Porras 
+- Alejandro Tello Giraldo
+- Kesman Posso Parra
 
 ### Descripción del Proyecto
 La función de esta aplicación es transformar la compleja legislación en un proceso de cálculo preciso y fácil de entender para cualquier trabajador. Su objetivo es procesar el ingreso bruto de un empleado y aplicarle en orden jerárquico todos los beneficios y límites legales que permite la DIAN.
@@ -121,3 +127,28 @@ Para verificar la integridad del código:
 4.  **Pruebas:** Abra `src/test_calculadora.py` y ejecútelo para ver los resultados de los tests.
 
 ---
+
+## Cómo ejecutar la aplicación en Visual Studio Code
+
+Siga las siguientes instrucciones para poner en marcha el programa:
+
+### 1. Abrir el proyecto en Visual Studio Code
+- Inicie Visual Studio Code.
+- Diríjase a **File > Open Folder**.
+- Seleccione la carpeta principal del proyecto (donde se encuentran archivos como `app.py`, la carpeta `src`, `build`, entre otros).
+
+### 2. Identificar el archivo de ejecución
+El archivo encargado de iniciar la interfaz es:
+src/view/payment_gui.py
+
+### 3. Abrir la terminal integrada
+- En el menú superior seleccione **Terminal > New Terminal**.
+- Confirme que la terminal esté ubicada en la carpeta raíz del proyecto.
+
+### 4. Ejecutar la aplicación
+Ingrese el siguiente comando en la terminal:
+
+```bash
+python src/view/payment_gui.py
+En sistemas donde se utilice python3, ejecute:
+python3 src/view/payment_gui.py
