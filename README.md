@@ -156,6 +156,7 @@ python3 src/view/payment_gui.py
 ---
 
 ## 5. Instrucciones para crear base de datos
+Aplicación de base de datos que utiliza el patrón MVC y está vinculada a una base de datos PostgreSQL en Render para gestionar usuarios y cálculos.
 
 ### Prerrequisitos
 
