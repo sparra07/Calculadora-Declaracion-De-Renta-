@@ -5,7 +5,5 @@ create table if not exists calculos_renta (
     aportes_ley decimal not null,
     deducciones decimal not null,
     renta_liquida decimal not null,
-    total_pagar decimal not null,
-    fecha_creacion date not null,
-    foreign key (cedula_usuario) references usuarios(cedula)
+    fecha_creacion date not null
 );
