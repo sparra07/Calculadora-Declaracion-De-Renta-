@@ -1,26 +1,45 @@
 import sys
+sys.path.append( ".")
 sys.path.append('src')
 
 import psycopg2
-
 from model.usuario import Usuario
+import secret_config
 
 class UsuarioController:
+    
+    def crear_tabla():
+        cursor= UsuarioController.obtener_cursor()
+        # Leer el contenido del archivo SQL
+        with open('sql/crear_usuarios.sql', 'r') as file:
+            sql= file.read()
+        cursor.execute(sql)
+        cursor.connection.commit()
+
+    def borrar_tabla(): 
+        cursor= UsuarioController.obtener_cursor()
+        # Leer el contenido del archivo SQL
+        with open('sql/borrar_tablas.sql', 'r') as file:
+            sql= file.read()
+        cursor.execute(sql)
+        cursor.connection.commit()
+
+    
     """Crea un objeto cursor para poder ejecutar"""
     def obtener_cursor():
-        conenetion = psycopg2.connect( database="calculadora_renta", user="calculadora_renta_user", password="NFBuYD2NTHvXVOnZv2hpdSUtu9BkRSM4", host="dpg-d7sk47mgkk3c73dapt6g-a.oregon-postgres.render.com")
-        cursor = conenetion.cursor()
+        connection = psycopg2.connect( database=secret_config.PGDATABASE, user=secret_config.PGUSER, password=secret_config.PGPASSWORD, host=secret_config.PGHOST)
+        cursor = connection.cursor()
         return cursor
 
     def insertar_usuario(usuario: Usuario):
         # Conectar a la base de datos
         cursor = UsuarioController.obtener_cursor()
         # Armar la consulta SQL para insertar un nuevo usuario
-        sql = f"""INSERT INTO public.usuarios (cedula, nombre, apellido, telefono, correo, direccion)
+        sql = f"""INSERT INTO usuarios (cedula, nombre, apellido, telefono, correo, direccion)
         VALUES ('{usuario.cedula}', '{usuario.nombre}', '{usuario.apellido}', '{usuario.telefono}', '{usuario.correo}', '{usuario.direccion}');"""
         
         # Ejecutar la consulta SQL para insertar el usuario
-        cursor.cursor.execute(sql)
+        cursor.execute(sql)
         
         # Guardar los cambios en la base de datos
         cursor.connection.commit()
@@ -29,18 +48,19 @@ class UsuarioController:
         # Conectar a la base de datos
         cursor = UsuarioController.obtener_cursor()
 
-        
-        
+    
         # Armar la consulta SQL para buscar un usuario por su cédula
-        sql = f"""SELECT cedula, nombre, apellido, telefono, correo, direccion FROM public.usuarios WHERE cedula = '{cedula}';"""
+        sql = f"""SELECT cedula, nombre, apellido, telefono, correo, direccion FROM usuarios WHERE cedula = '{cedula}';"""
         
         # Ejecutar la consulta SQL para buscar el usuario
         cursor.execute(sql)
         
         # Obtener el resultado de la consulta
-        result = cursor.fetchone()
+        fila = cursor.fetchone()
+        if fila:
+            resultado = Usuario(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5])
+            return resultado   
+        return None
+       
         
-        if result:
-            return Usuario(*result)
-        else:
-            return None
+        

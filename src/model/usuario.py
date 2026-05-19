@@ -7,5 +7,10 @@ class Usuario:
         self.correo = correo
         self.direccion = direccion
 
-    def __str__(self):
-        return f"Usuario(cedula={self.cedula}, nombre={self.nombre}, apellido={self.apellido}, telefono={self.telefono}, correo={self.correo}, direccion={self.direccion})"
+    def is_equal(self, otro):
+        return (self.cedula == otro.cedula and
+                self.nombre == otro.nombre and
+                self.apellido == otro.apellido and
+                self.telefono == otro.telefono and
+                self.correo == otro.correo and
+                self.direccion == otro.direccion)
