@@ -152,3 +152,29 @@ Ingrese el siguiente comando en la terminal:
 python src/view/payment_gui.py
 En sistemas donde se utilice python3, ejecute:
 python3 src/view/payment_gui.py
+```
+---
+
+## 5. Instrucciones para crear base de datos
+
+### Requisitos:
+
+- Python 3.x
+- PostgreSQL
+- Dependencias del proyecto
+
+### Configuración de la base de daos
+
+Este proyecto utiliza PostgreSQL como sistema de gestión de base de datos
+
+### Configuración de la conexión
+
+El proyecto utiliza  un archivo llamado secret_confi.py para manejar la configuración de conexión a la base de datos
+
+### Creas el archivo secret_config.py
+
+Crear el archivo en la raiz del proyecto con el siguiente contenido:
+
+
+
+
