@@ -156,24 +156,28 @@ python3 src/view/payment_gui.py
 ---
 
 ## 5. Instrucciones para crear base de datos
+Aplicación de base de datos que utiliza el patrón MVC y está vinculada a una base de datos PostgreSQL en Render para gestionar usuarios y cálculos.
 
-### Requisitos:
+### Prerrequisitos
 
-- Python 3.x
-- PostgreSQL
-- Dependencias del proyecto
-
+Instale el paquete `psycopg2` con:
+```bash
+pip install psycopg2
+```
+- Asegúrese de tener una base de datos PostgreSQL y sus respectivos datos de acceso.
+- Copie el archivo secret_config_sample.py como secret_config.py y establezca en este archivo los datos de conexión a su base de datos.
+- Antes de ejecutar la aplicación por primera vez, debe ejecutar las pruebas unitarias para asegurar que las tablas se encuentren creadas en la base de datos de manera correcta.
+  
 ### Configuración de la base de daos
 
-Este proyecto utiliza PostgreSQL como sistema de gestión de base de datos
+Esta aplicación requiere que estén creadas las siguientes tablas en la base de datos:
 
-### Configuración de la conexión
+- usuarios: Tabla principal de identificación de usuarios.
 
-El proyecto utiliza  un archivo llamado secret_confi.py para manejar la configuración de conexión a la base de datos
+- calculos_renta: Tabla para el almacenamiento de liquidaciones financieras.
 
-### Creas el archivo secret_config.py
+Utilice los scripts ubicados en la carpeta sql/ (como sql/crear_usuarios.sql) para crearlas antes de ejecutar la aplicación, o corra las pruebas unitarias para que se cree la estructura física necesaria automáticamente y se mitigue cualquier error de conexión.
 
-Crear el archivo en la raiz del proyecto con el siguiente contenido:
 
 
 
