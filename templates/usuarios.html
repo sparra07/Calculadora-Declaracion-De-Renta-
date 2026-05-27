@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestión de Usuarios</title>
+</head>
+<body>
+    <h1>Gestionar Usuarios</h1>
+
+    <h2>Registrar Nuevo Usuario</h2>
+    <form action="/insertar_usuario" method="GET">
+        <label>Cédula:</label><br><input type="text" name="cedula" required><br><br>
+        <label>Nombre:</label><br><input type="text" name="nombre" required><br><br>
+        <label>Apellido:</label><br><input type="text" name="apellido" required><br><br>
+        <label>Teléfono:</label><br><input type="text" name="telefono"><br><br>
+        <label>Correo:</label><br><input type="email" name="correo"><br><br>
+        <label>Dirección:</label><br><input type="text" name="direccion"><br><br>
+        <button type="submit">Guardar Usuario</button>
+    </form>
+
+    <hr>
+
+    <h2>Acciones de Usuario</h2>
+    <form action="/buscar_usuario" method="GET">
+        <label>Buscar por Cédula:</label>
+        <input type="text" name="cedula" required>
+        <button type="submit">Buscar</button>
+    </form>
+    <br>
+    <form action="/eliminar_usuario" method="GET">
+        <label>Eliminar por Cédula:</label>
+        <input type="text" name="cedula" required>
+        <button type="submit">Eliminar</button>
+    </form>
+
+    <br>
+    <a href="/">Volver al menú principal</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historial de Cálculos</title>
+</head>
+<body>
+    <h1>Historial de Cálculos para el Usuario</h1>
+    <table border="1">
+        <tr>
+            <th>ID Cálculo</th>
+            <th>Ingreso Bruto</th>
+            <th>Aportes Ley</th>
+            <th>Deducciones</th>
+            <th>Renta Líquida</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+        {% for c in calculos %}
+        <tr>
+            <td>{{ c.id_calculo }}</td>
+            <td>{{ c.ingreso_bruto }}</td>
+            <td>{{ c.aportes_ley }}</td>
+            <td>{{ c.deducciones }}</td>
+            <td>{{ c.renta_liquida }}</td>
+            <td>{{ c.fecha_creacion }}</td>
+            <td><a href="/modificar_calculo?id_calculo={{ c.id_calculo }}">Modificar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>

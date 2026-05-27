@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modificar Usuario</title>
+</head>
+<body>
+    <h1>Modificar Datos de Usuario</h1>
+    <form action="/actualizar_usuario" method="GET">
+        <input type="hidden" name="cedula" value="{{ usuario.cedula }}">
+        <label>Nombre:</label><br><input type="text" name="nombre" value="{{ usuario.nombre }}" required><br><br>
+        <label>Apellido:</label><br><input type="text" name="apellido" value="{{ usuario.apellido }}" required><br><br>
+        <label>Teléfono:</label><br><input type="text" name="telefono" value="{{ usuario.telefono }}"><br><br>
+        <label>Correo:</label><br><input type="email" name="correo" value="{{ usuario.correo }}"><br><br>
+        <label>Dirección:</label><br><input type="text" name="direccion" value="{{ usuario.direccion }}"><br><br>
+        <button type="submit">Guardar Cambios</button>
+    </form>
+    <br>
+    <a href="/">Cancelar y volver</a>
+</body>
+</html>

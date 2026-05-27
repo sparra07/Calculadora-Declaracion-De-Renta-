@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modificar Cálculo</title>
+</head>
+<body>
+    <h1>Modificar Registro de Cálculo</h1>
+    <form action="/actualizar_calculo" method="GET">
+        <input type="hidden" name="id_calculo" value="{{ calculo.id_calculo }}">
+        <input type="hidden" name="cedula_usuario" value="{{ calculo.cedula_usuario }}">
+        <label>Ingreso Bruto:</label><br><input type="text" name="ingreso_bruto" value="{{ calculo.ingreso_bruto }}" required><br><br>
+        <label>Aportes Ley:</label><br><input type="text" name="aportes_ley" value="{{ calculo.aportes_ley }}" required><br><br>
+        <label>Deducciones:</label><br><input type="text" name="deducciones" value="{{ calculo.deducciones }}" required><br><br>
+        <label>Renta Líquida:</label><br><input type="text" name="renta_liquida" value="{{ calculo.renta_liquida }}" required><br><br>
+        <label>Fecha Creación:</label><br><input type="date" name="fecha_creacion" value="{{ calculo.fecha_creacion }}" required><br><br>
+        <button type="submit">Actualizar Cálculo</button>
+    </form>
+    <br>
+    <a href="/">Cancelar y volver</a>
+</body>
+</html>
