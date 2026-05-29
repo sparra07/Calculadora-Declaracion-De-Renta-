@@ -1,38 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Gestión de Cálculos</title>
 </head>
-<body>
-    <h1>Gestionar Cálculos de Renta</h1>
+<body style="background-color:#f4f6f9; font-family: Arial, sans-serif; padding: 30px;">
+    <h1 style="color: #333; text-align: center;">Gestionar Cálculos de Renta</h1>
+    <hr style="max-width: 600px; margin: 20px auto;">
 
-    <h2>Registrar Cálculo</h2>
-    <form action="/insertar_calculo" method="GET">
-        <label>Cédula del Usuario:</label><br><input type="text" name="cedula_usuario" required><br><br>
-        <label>Ingreso Bruto:</label><br><input type="text" name="ingreso_bruto" required><br><br>
-        <label>Aportes de Ley:</label><br><input type="text" name="aportes_ley" required><br><br>
-        <label>Deducciones:</label><br><input type="text" name="deducciones" required><br><br>
-        <label>Renta Líquida:</label><br><input type="text" name="renta_liquida" required><br><br>
-        <label>Fecha de Creación:</label><br><input type="date" name="fecha_creacion" required><br><br>
-        <button type="submit">Guardar Cálculo</button>
-    </form>
+    <div style="background-color: white; padding: 25px; border-radius: 5px; max-width: 500px; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h2 style="color: #28a745; margin-top: 0; font-size: 20px;">Registrar Cálculo</h2>
+        <form action="/procesar_calculo" method="GET">
+            <label style="font-weight: bold; color: #555;">Cédula del Usuario:</label><br><input type="text" name="cedula_usuario" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Ingreso Bruto:</label><br><input type="text" name="income_bruto" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Aportes de Ley:</label><br><input type="text" name="aportes_ley" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Deducciones:</label><br><input type="text" name="deducciones" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Fecha de Creación:</label><br><input type="date" name="fecha_creacion" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;">Calcular Impuesto</button>
+        </form>
+    </div>
 
-    <hr>
-
-    <h2>Acciones de Cálculos</h2>
-    <form action="/buscar_calculo" method="GET">
-        <label>Buscar Historial por Cédula:</label>
-        <input type="text" name="cedula_usuario" required>
-        <button type="submit">Ver Cálculos</button>
-    </form>
-    <br>
-    <form action="/eliminar_calculo" method="GET">
-        <label>Eliminar Cálculo por ID:</label>
-        <input type="number" name="id_calculo" required>
-        <button type="submit">Eliminar por ID</button>
-    </form>
-
-    <br>
-    <a href="/">Volver al menú principal</a>
+    <p style="text-align: center; margin-top: 30px;"><a href="/" style="color: #28a745; text-decoration: none; font-weight: bold;">⬅️ Volver al menú principal</a></p>
 </body>
 </html>

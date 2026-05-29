@@ -61,6 +61,21 @@ class UsuarioController:
             resultado = Usuario(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5])
             return resultado   
         return None
+
+    def eliminar_usuario(cedula):
+        cursor = UsuarioController.obtener_cursor()
+        sql = f"DELETE FROM usuarios WHERE cedula = '{cedula}';"
+        cursor.execute(sql)
+        cursor.connection.commit()
+
+    def actualizar_usuario(usuario: Usuario):
+        cursor = UsuarioController.obtener_cursor()
+        sql = f"""UPDATE usuarios 
+                SET nombre='{usuario.nombre}', apellido='{usuario.apellido}', 
+                    telefono='{usuario.telefono}', correo='{usuario.correo}', direccion='{usuario.direccion}' 
+                WHERE cedula='{usuario.cedula}';"""
+        cursor.execute(sql)
+        cursor.connection.commit()
        
         
         

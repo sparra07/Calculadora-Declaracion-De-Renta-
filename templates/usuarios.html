@@ -1,38 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
 </head>
-<body>
-    <h1>Gestionar Usuarios</h1>
+<body style="background-color: #f4f6f9; font-family: Arial, sans-serif; padding: 30px;">
+    <h1 style="color: #333; text-align: center;">Gestión de Usuarios</h1>
+    <hr style="max-width: 600px; margin: 20px auto;">
 
-    <h2>Registrar Nuevo Usuario</h2>
-    <form action="/insertar_usuario" method="GET">
-        <label>Cédula:</label><br><input type="text" name="cedula" required><br><br>
-        <label>Nombre:</label><br><input type="text" name="nombre" required><br><br>
-        <label>Apellido:</label><br><input type="text" name="apellido" required><br><br>
-        <label>Teléfono:</label><br><input type="text" name="telefono"><br><br>
-        <label>Correo:</label><br><input type="email" name="correo"><br><br>
-        <label>Dirección:</label><br><input type="text" name="direccion"><br><br>
-        <button type="submit">Guardar Usuario</button>
-    </form>
+    <div style="background-color: white; padding: 25px; border-radius: 5px; max-width: 500px; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h2 style="color: #007bff; margin-top: 0; font-size: 20px;">Registrar Nuevo Usuario</h2>
+        <form action="/insertar_usuario" method="GET">
+            <label style="font-weight: bold; color: #555;">Cédula:</label><br><input type="text" name="cedula" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Nombre:</label><br><input type="text" name="nombre" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Apellido:</label><br><input type="text" name="apellido" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Teléfono:</label><br><input type="text" name="telefono" style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Correo:</label><br><input type="email" name="correo" style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Dirección:</label><br><input type="text" name="direccion" style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;">Guardar Usuario</button>
+        </form>
+    </div>
 
-    <hr>
+    <br><br>
 
-    <h2>Acciones de Usuario</h2>
-    <form action="/buscar_usuario" method="GET">
-        <label>Buscar por Cédula:</label>
-        <input type="text" name="cedula" required>
-        <button type="submit">Buscar</button>
-    </form>
-    <br>
-    <form action="/eliminar_usuario" method="GET">
-        <label>Eliminar por Cédula:</label>
-        <input type="text" name="cedula" required>
-        <button type="submit">Eliminar</button>
-    </form>
+    <div style="background-color: white; padding: 25px; border-radius: 5px; max-width: 500px; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h2 style="color: #333; margin-top: 0; font-size: 20px;">Acciones de Consulta</h2>
+        
+        <form action="/buscar_usuario" method="GET">
+            <label style="font-weight: bold; color: #555;">Buscar por Cédula:</label><br>
+            <input type="text" name="cedula" required style="width: 70%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; display: inline-block;">
+            <button type="submit" style="background-color: #6c757d; color: white; padding: 6px 15px; border: none; border-radius: 5px; cursor: pointer;">Buscar</button>
+        </form>
+        
+        <br><hr style="border: 0; border-top: 1px solid #eee;"><br>
+        
+        <form action="/eliminar_usuario" method="GET">
+            <label style="font-weight: bold; color: #555;">Eliminar por Cédula:</label><br>
+            <input type="text" name="cedula" required style="width: 70%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; display: inline-block;">
+            <button type="submit" style="background-color: #dc3545; color: white; padding: 6px 15px; border: none; border-radius: 5px; cursor: pointer;">Eliminar</button>
+        </form>
+    </div>
 
-    <br>
-    <a href="/">Volver al menú principal</a>
+    <p style="text-align: center; margin-top: 30px;"><a href="/" style="color: #007bff; text-decoration: none; font-weight: bold;">⬅️ Volver al menú principal</a></p>
 </body>
 </html>

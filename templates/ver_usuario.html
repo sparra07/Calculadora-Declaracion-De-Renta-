@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Ver Usuario</title>
 </head>
-<body>
-    <h1>Datos del Usuario Encontrado</h1>
-    <p><strong>Cédula:</strong> {{ usuario.cedula }}</p>
-    <p><strong>Nombre:</strong> {{ usuario.nombre }} {{ usuario.apellido }}</p>
-    <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
-    <p><strong>Correo:</strong> {{ usuario.correo }}</p>
-    <p><strong>Dirección:</strong> {{ usuario.direccion }}</p>
+<body style="background-color: #f4f6f9; font-family: Arial, sans-serif; padding: 30px; text-align: center;">
+    <h1 style="color: #333;">Datos del Usuario Encontrado</h1>
+    <hr style="max-width: 400px; margin: 20px auto;">
     
-    <hr>
-    <a href="/modificar_usuario?cedula={{ usuario.cedula }}">Modificar los datos de este usuario</a> | 
-    <a href="/">Volver al menú principal</a>
+    <div style="background-color: white; padding: 25px; border-radius: 5px; max-width: 400px; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: left; line-height: 1.8;">
+        <p><strong>Cédula:</strong> {{ usuario.cedula }}</p>
+        <p><strong>Nombre:</strong> {{ usuario.nombre }} {{ usuario.apellido }}</p>
+        <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+        <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+        <p><strong>Dirección:</strong> {{ usuario.direccion }}</p>
+    </div>
+    
+    <div style="margin-top: 25px;">
+        <a href="/modificar_usuario?cedula={{ usuario.cedula }}" style="background-color: #007bff; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Modificar Datos</a>
+        <span style="margin: 0 10px; color: #ccc;">|</span>
+        <a href="/usuarios" style="color: #6c757d; text-decoration: none; font-weight: bold;">Volver</a>
+    </div>
 </body>
 </html>

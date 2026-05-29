@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Modificar Usuario</title>
 </head>
-<body>
-    <h1>Modificar Datos de Usuario</h1>
-    <form action="/actualizar_usuario" method="GET">
-        <input type="hidden" name="cedula" value="{{ usuario.cedula }}">
-        <label>Nombre:</label><br><input type="text" name="nombre" value="{{ usuario.nombre }}" required><br><br>
-        <label>Apellido:</label><br><input type="text" name="apellido" value="{{ usuario.apellido }}" required><br><br>
-        <label>Teléfono:</label><br><input type="text" name="telefono" value="{{ usuario.telefono }}"><br><br>
-        <label>Correo:</label><br><input type="email" name="correo" value="{{ usuario.correo }}"><br><br>
-        <label>Dirección:</label><br><input type="text" name="direccion" value="{{ usuario.direccion }}"><br><br>
-        <button type="submit">Guardar Cambios</button>
-    </form>
-    <br>
-    <a href="/">Cancelar y volver</a>
+<body style="background-color: #f4f6f9; font-family: Arial, sans-serif; padding: 30px;">
+    <h1 style="color: #333; text-align: center;">Modificar Datos de Usuario</h1>
+    <hr style="max-width: 500px; margin: 20px auto;">
+    
+    <div style="background-color: white; padding: 25px; border-radius: 5px; max-width: 500px; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <form action="/actualizar_usuario" method="GET">
+            <input type="hidden" name="cedula" value="{{ usuario.cedula }}">
+            <p style="font-size: 16px; background-color: #e9ecef; padding: 8px; border-radius: 4px;"><strong>Modificando registro Cédula:</strong> {{ usuario.cedula }}</p>
+            <br>
+            <label style="font-weight: bold; color: #555;">Nombre:</label><br><input type="text" name="nombre" value="{{ usuario.nombre }}" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Apellido:</label><br><input type="text" name="apellido" value="{{ usuario.apellido }}" required style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Teléfono:</label><br><input type="text" name="telefono" value="{{ usuario.telefono }}" style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Correo:</label><br><input type="email" name="correo" value="{{ usuario.correo }}" style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <label style="font-weight: bold; color: #555;">Dirección:</label><br><input type="text" name="direccion" value="{{ usuario.direccion }}" style="width: 95%; padding: 6px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;"><br><br>
+            <button type="submit" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;">Guardar Cambios</button>
+        </form>
+        <br>
+        <p style="text-align: center; margin: 0;"><a href="/usuarios" style="color: #dc3545; text-decoration: none;">Cancelar y regresar</a></p>
+    </div>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de la Liquidación</title>
+</head>
+<body style="background-color: #f4f6f9; font-family: Arial, sans-serif; padding: 30px;">
+    <h1 style="color: #333; text-align: center;">Resumen de la Declaración de Renta</h1>
+    <hr style="max-width: 500px; margin: 20px auto;">
+    
+    <div style="background-color: white; padding: 25px; border-radius: 5px; max-width: 500px; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05); line-height: 1.8;">
+        <p style="font-size: 16px; background-color: #e9ecef; padding: 8px; border-radius: 4px; text-align: center;">
+            <strong>Contribuyente Cédula:</strong> {{ datos.cedula_usuario }}
+        </p>
+        <br>
+        <p><strong> Ingreso Bruto:</strong> ${{ "{:,.0f}".format(datos.income_bruto) }}</p>
+        <p><strong> Aportes de Ley:</strong> ${{ "{:,.0f}".format(datos.aportes_ley) }}</p>
+        <p><strong> Deducciones Permitidas:</strong> ${{ "{:,.0f}".format(datos.deducciones) }}</p>
+        <p><strong>Fecha de Operación:</strong> {{ datos.fecha_creacion }}</p>
+        
+        <hr style="border: 0; border-top: 2px dashed #28a745; margin: 15px 0;">
+        
+        <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px; border-radius: 4px; text-align: center; margin-bottom: 20px;">
+            <span style="color: #155724; font-size: 16px; font-weight: bold;">TOTAL IMPUESTO A PAGAR:</span><br>
+            <strong style="color: #28a745; font-size: 26px;">${{ "{:,.0f}".format(datos.total_impuesto) }}</strong>
+        </div>
+
+        <form action="/guardar_calculo_definitivo" method="GET">
+            <input type="hidden" name="cedula_usuario" value="{{ datos.cedula_usuario }}">
+            <input type="hidden" name="income_bruto" value="{{ datos.income_bruto }}">
+            <input type="hidden" name="aportes_ley" value="{{ datos.aportes_ley }}">
+            <input type="hidden" name="deducciones" value="{{ datos.deducciones }}">
+            <input type="hidden" name="fecha_creacion" value="{{ datos.fecha_creacion }}">
+            
+            <button type="submit" style="background-color: #28a745; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px;">✔️ Guardar Cálculo en Base de Datos</button>
+        </form>
+    </div>
+    <br>
+    <p style="text-align: center;"><a href="/calculos" style="color: #dc3545; text-decoration: none; font-weight: bold;">❌ Cancelar y Volver</a></p>
+</body>
+</html>

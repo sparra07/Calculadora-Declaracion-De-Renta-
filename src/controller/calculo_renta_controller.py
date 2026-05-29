@@ -35,8 +35,8 @@ class CalculoRentaController:
     def insertar_calculo(calculo: CalculoRenta):
         cursor = CalculoRentaController.obtener_cursor()
         
-        sql = f"""INSERT INTO calculos_renta (cedula_usuario, ingreso_bruto, aportes_ley, deducciones, renta_liquida, fecha_creacion)
-        VALUES ('{calculo.cedula_usuario}', {calculo.ingreso_bruto}, {calculo.aportes_ley}, {calculo.deducciones}, {calculo.renta_liquida}, '{calculo.fecha_creacion}') RETURNING id_calculo;"""
+        sql = f"""INSERT INTO calculos_renta (cedula_usuario, ingreso_bruto, aportes_ley, deducciones, fecha_creacion)
+        VALUES ('{calculo.cedula_usuario}', {calculo.ingreso_bruto}, {calculo.aportes_ley}, {calculo.deducciones}, '{calculo.fecha_creacion}') RETURNING id_calculo;"""
         
         cursor.execute(sql)
         # Capturamos el id autogenerado por el SERIAL
@@ -46,13 +46,13 @@ class CalculoRentaController:
     def buscar_calculo(id_calculo):
         cursor = CalculoRentaController.obtener_cursor()
         
-        sql = f"""SELECT id_calculo, cedula_usuario, ingreso_bruto, aportes_ley, deducciones, renta_liquida, fecha_creacion 
+        sql = f"""SELECT id_calculo, cedula_usuario, ingreso_bruto, aportes_ley, deducciones, fecha_creacion 
         FROM calculos_renta WHERE id_calculo = {id_calculo};"""
         
         cursor.execute(sql)
         fila = cursor.fetchone()
         
         if fila:
-            resultado = CalculoRenta(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5], fila[6])
+            resultado = CalculoRenta(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5])
             return resultado   
         return None

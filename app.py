@@ -8,20 +8,17 @@ from controller.usuario_controller import UsuarioController
 from model.usuario import Usuario
 from controller.calculo_renta_controller import CalculoRentaController
 from model.calculo_renta import CalculoRenta
+from model.Logica_calculadora import (
+    CalculadoraImpuestos, Impuestos, IngresoInvalido, 
+    AportesInvalidos, IngresoCero, DeduccionFueraRango, AportesObligatorios
+)
 
 server = Flask(__name__)
 
-# =========================================================================
-# RUTA INICIAL PRINCIPAL
-# =========================================================================
 @server.route("/")
 def pagina_inicio():
     return render_template("pagina_inicio.html")
 
-
-# =========================================================================
-# MÓDULO USUARIOS
-# =========================================================================
 
 @server.route("/usuarios")
 def usuarios():
@@ -85,37 +82,68 @@ def actualizar_usuario():
 def eliminar_usuario():
     try:
         cedula = request.args["cedula"]
-        UsuarioController.eliminar_usuario_por_cedula(cedula)
+        UsuarioController.eliminar_usuario(cedula)
         return "Usuario eliminado exitosamente. <a href='/'>Volver al inicio</a>"
     except Exception as e:
         return f"Error al eliminar usuario: {str(e)}.<br /><a href='/'>Volver al inicio</a>"
 
 
-# =========================================================================
-# MÓDULO CÁLCULOS DE RENTA
-# =========================================================================
-
 @server.route("/calculos")
 def calculos():
     return render_template("calculos.html")
 
-@server.route("/insertar_calculo")
-def insertar_calculo():
+@server.route("/procesar_calculo")
+def procesar_calculo():
     try:
+        # 1. Capturar entradas limpiando caracteres especiales o puntos de miles
+        ingreso_bruto = float(request.args["income_bruto"].replace(".", "").replace(",", ""))
+        aportes_ley = float(request.args["aportes_ley"].replace(".", "").replace(",", ""))
+        deducciones = float(request.args["deducciones"].replace(".", "").replace(",", ""))
+        fecha_creacion = request.args["fecha_creacion"]
+        cedula_usuario = request.args["cedula_usuario"]
+        
+        # 2. Instanciar tu objeto de tipo Impuestos
+        mis_impuestos = Impuestos(ingreso_bruto, aportes_ley, deducciones)
+        
+        # 3. Llamar a tu método de negocio (aquí se ejecutan tus validaciones de forma automática)
+        renta_liquida, beneficio_real, limite_legal, total_impuesto = CalculadoraImpuestos.calcular_entradas(mis_impuestos)
+        
+        # 4. Estructurar el diccionario para mostrarlo en la plantilla intermedia `mostrar_resultado.html`
+        datos_calculados = {
+            "cedula_usuario": cedula_usuario,
+            "income_bruto": ingreso_bruto,
+            "aportes_ley": aportes_ley,
+            "deducciones": deducciones,      
+            "total_impuesto": total_impuesto,       
+            "fecha_creacion": fecha_creacion
+        }
+        
+        return render_template("mostrar_resultado.html", datos=datos_calculados)
+
+    except (IngresoInvalido, AportesInvalidos, IngresoCero, DeduccionFueraRango, AportesObligatorios) as error_negocio:
+        return f" Inconsistencia en Datos: {str(error_negocio)}.<br /><a href='/calculos'>Volver a intentar</a>"
+        
+    except Exception as e:
+        return f" Error de Formato: Asegúrate de ingresar únicamente números válidos. Detalle: {str(e)}.<br /><a href='/calculos'>Volver a intentar</a>"
+
+@server.route("/guardar_calculo_definitivo")
+def guardar_calculo_definitivo():
+    try:
+        # Crea el modelo final que se guarda en la tabla calculo_renta de PostgreSQL
         calculo = CalculoRenta(
             id_calculo=None,
             cedula_usuario=request.args["cedula_usuario"],
-            ingreso_bruto=float(request.args["ingreso_bruto"].replace(".", "")),
-            aportes_ley=float(request.args["aportes_ley"].replace(".", "")),
-            deducciones=float(request.args["deducciones"].replace(".", "")),
-            renta_liquida=float(request.args["renta_liquida"].replace(".", "")),
+            ingreso_bruto=float(request.args["income_bruto"]),
+            aportes_ley=float(request.args["aportes_ley"]),
+            deducciones=float(request.args["deducciones"]),
             fecha_creacion=request.args["fecha_creacion"]
         )
         id_calculo = CalculoRentaController.insertar_calculo(calculo)
-        return f"Se guardó exitosamente el cálculo para la cédula: {request.args['cedula_usuario']} con el ID: {id_calculo}.<br /><a href='/'>Volver al inicio</a>"
+        return f"Liquidación Guardada exitosamente para el usuario {request.args['cedula_usuario']} con el Radicado #{id_calculo}.<br /><a href='/calculos'>Volver a Cálculos</a>"
+        
     except Exception as e:
-        return f"Error al insertar el cálculo: {str(e)}.<br /><a href='/'>Volver al inicio</a>"
-
+        return f"Error al Guardar: No se pudo almacenar en la base de datos. Comprueba que la cédula exista. Detalle: {str(e)}.<br /><a href='/calculos'>Volver a Cálculos</a>"
+    
 @server.route("/buscar_calculo")
 def buscar_calculo():
     try:
@@ -147,7 +175,6 @@ def actualizar_calculo():
             ingreso_bruto=float(request.args["ingreso_bruto"].replace(".", "")),
             aportes_ley=float(request.args["aportes_ley"].replace(".", "")),
             deducciones=float(request.args["deducciones"].replace(".", "")),
-            renta_liquida=float(request.args["renta_liquida"].replace(".", "")),
             fecha_creacion=request.args["fecha_creacion"]
         )
         CalculoRentaController.actualizar_calculo(calculo)
