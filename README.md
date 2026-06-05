@@ -178,6 +178,99 @@ Esta aplicación requiere que estén creadas las siguientes tablas en la base de
 
 Utilice los scripts ubicados en la carpeta sql/ (como sql/crear_usuarios.sql) para crearlas antes de ejecutar la aplicación, o corra las pruebas unitarias para que se cree la estructura física necesaria automáticamente y se mitigue cualquier error de conexión.
 
+---
+
+
+
+---
+### Primera Opción
+puedes acceder directamente a la aplicación publicada en línea:
+```
+
+```
+### Segunda Opción
+### 1. Requisitos previos
+
+Antes de comenzar, asegúrate de tener instalado lo siguiente:
+
+- Python 3.10 o superior
+- pip actualizado
+- Git instalado
+
+Instala las dependencias necesarias:
+```bash
+pip install flask kivy psycopg
+```
+
+---
+
+### 2. Proyecto en Git
+
+Clonar el repositorio:**
+```bash
+git clone https://github.com/sparra07/Calculadora-Declaracion-De-Renta-.git
+```
+### 3. Configurar la conexión a la base de datos
+
+Necesitas crear un archivo llamado secret_config.py en la raíz del proyecto para conectar con PostgreSQL. Puedes crearlo manualmente con este contenido:
+```python
+PGHOST = "tu-host.render.com"
+PGDATABASE = "nombre_de_tu_base"
+PGUSER = "tu_usuario"
+PGPASSWORD = "tu_contraseña"
+PGPORT = "5432"
+```
+Puedes encontrar estos datos en Render  
+### Crear tu propia base de datos en Render
+
+1. Ve a https://render.com y crea una cuenta o inicia sesión
+2. Haz click en **New** → **PostgreSQL**
+3. Dale un nombre a tu base de datos y haz click en **Create Database**
+4. Una vez creada, ve a tu base de datos → **Connect** → copia el **External Database URL**
+
+El formato es así:
+**postgresql: `//USUARIO:CONTRASEÑA@HOST/NOMBRE_BD`**
+
+De ahí sacas los datos para tu `secret_config.py`:
+
+- **PGUSER** → lo que está entre `postgresql://` y `:` 
+- **PGPASSWORD** → lo que está entre `:` y `@`
+- **PGHOST** → lo que está entre `@` y `/` 
+- **PGDATABASE** → lo que está después del último `/`
+- **PGPORT** → siempre es `5432`
+--- 
+
+### 4. Crear las tablas en la base de datos
+
+**Opción A:** Desde la aplicación web principal, haz click en el recuadro amarillo que dice [ Hacer clic aquí para Crear Tablas ]. El sistema leerá automáticamente tus archivos de la carpeta sql/ y configurará todo.
+
+**Opcion B:** Desde tu editor con una extensión de PostgreSQL instalada, abre cada archivo de la carpeta sql/ y ejecútalo en este orden estricto::
+1. `sql/crear-usuarios.sql`
+2. `sql/crear_calculos.sql`
+
+---
+
+### 5. Ejecutar la aplicación web
+
+**Primera vez que ejecutas la aplicación:**
+
+1. Abre la terminal (PowerShell o CMD en Windows)
+2. Navega a la carpeta donde clonaste el repositorio. Si la ruta tiene espacios, usa comillas:
+```
+cd "C:\ruta\donde\esta\tu-proyecto-renta"
+```
+3.Inicia el servidor ejecutando el archivo principal:
+```
+python app.py
+```
+### 6. Ejecutar los tests
+
+Desde la raíz del proyecto:
+```bash
+python -m unittest src/test/test_usuario.py
+python -m unittest src/test/test_calculo_renta.py
+```
+
 
 
 
