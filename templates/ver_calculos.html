@@ -17,7 +17,7 @@
                     <th style="border-bottom: 2px solid #ddd; text-align: center;">Aportes Ley</th>
                     <th style="border-bottom: 2px solid #ddd; text-align: center;">Deducciones</th>
                     <th style="border-bottom: 2px solid #ddd; text-align: center;">Fecha</th>
-                    <th style="border-bottom: 2px solid #ddd; text-align: center;">Acciones</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,6 @@
                     <td>{{ c.aportes_ley }}</td>
                     <td>{{ c.deducciones }}</td>
                     <td>{{ c.fecha_creacion }}</td>
-                    <td><a href="/modificar_calculo?id_calculo={{ c.id_calculo }}" style="color: #007bff; text-decoration: none; font-weight: bold;">[Modificar]</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
